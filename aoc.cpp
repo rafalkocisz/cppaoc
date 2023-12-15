@@ -43,11 +43,11 @@ namespace aoc
 
 		exit(EXIT_FAILURE);
 #else
-		throw std::runtime_error(message);
+		throw runtime_error(message);
 #endif
 	}
 
-	int PuzzleSolution::run(const std::string& puzzleInputFilePath)
+	int PuzzleSolution::run(const string& puzzleInputFilePath)
 	{
 		processInput(puzzleInputFilePath);
 
@@ -57,7 +57,7 @@ namespace aoc
 		return EXIT_SUCCESS;
 	}
 
-	void PuzzleSolution::processInput(const std::string& puzzleInputFilePath)
+	void PuzzleSolution::processInput(const string& puzzleInputFilePath)
 	{
 		input_ = loadPuzzleInput(puzzleInputFilePath);
 	}

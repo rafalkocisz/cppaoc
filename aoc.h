@@ -5,7 +5,25 @@
 #include <string>
 #include <vector>
 
-#define AOC_ASSERT(condition, message) \
+#define AOC_FUNCTIONIZE(a, b) \
+	a(b)
+
+#define AOC_STRINGIZE(a) \
+	#a
+
+#define AOC_TO_STRING(expression) \
+	AOC_FUNCTIONIZE(AOC_STRINGIZE, expression)
+
+#define AOC_ASSERT(condition) \
+	do \
+	{ \
+		if(!(condition)) \
+		{ \
+			aoc::panic("assertion failed with condition '" AOC_TO_STRING(condition) "'"); \
+		} \
+	} while(0)
+
+#define AOC_ASSERT_MSG(condition, message) \
 	do \
 	{ \
 		if(!(condition)) \
@@ -18,8 +36,9 @@ namespace aoc
 {
 	std::vector<std::string> loadPuzzleInput(const std::string& puzzleInputFilePath);
 
-	[[noreturn]] void panic(const std::string& message,
-	                        const std::source_location sourceLocation=std::source_location::current());
+	[[noreturn]]
+	void panic(const std::string& message,
+	           const std::source_location sourceLocation=std::source_location::current());
 
 	class PuzzleSolution
 	{

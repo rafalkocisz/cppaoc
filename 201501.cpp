@@ -17,13 +17,14 @@ using namespace std;
 
 int floorOffset(char instruction)
 {
+
 	switch(instruction)
 	{
 		case '(': return 1;
 		case ')': return -1;
-		default:
-			aoc::panic(fmt::format("invalid instruction: '{}'", instruction));
 	}
+
+	panic(format("invalid instruction: '{}'", instruction));
 
 	return 0;
 }
@@ -50,7 +51,7 @@ int findEnterTheBasementInstructionPosition(const string& instructions)
 			return i + 1;
 	}
 
-	aoc::panic(fmt::format("no 'enter the basement' instruction found"));
+	panic(format("no 'enter the basement' instruction found"));
 
 	return -1;
 }
@@ -61,10 +62,10 @@ TEST_CASE("floorOffset")
 {
 	CHECK(floorOffset('(') == 1);
 	CHECK(floorOffset(')') == -1);
-	CHECK_THROWS_WITH_AS(floorOffset('-'), "invalid instruction: '-'", std::runtime_error);
-	CHECK_THROWS_WITH_AS(floorOffset('\''), "invalid instruction: '''", std::runtime_error);
-	CHECK_THROWS_WITH_AS(floorOffset(' '), "invalid instruction: ' '", std::runtime_error);
-	CHECK_THROWS_WITH_AS(floorOffset('\t'), "invalid instruction: '\t'", std::runtime_error);
+	CHECK_THROWS_WITH_AS(floorOffset('-'), "invalid instruction: '-'", runtime_error);
+	CHECK_THROWS_WITH_AS(floorOffset('\''), "invalid instruction: '''", runtime_error);
+	CHECK_THROWS_WITH_AS(floorOffset(' '), "invalid instruction: ' '", runtime_error);
+	CHECK_THROWS_WITH_AS(floorOffset('\t'), "invalid instruction: '\t'", runtime_error);
 }
 
 TEST_CASE("findFloor")
@@ -79,21 +80,21 @@ TEST_CASE("findFloor")
 	CHECK(findFloor("))(") == -1);
 	CHECK(findFloor(")))") == -3);
 	CHECK(findFloor(")())())") == -3);
-	CHECK_THROWS_WITH_AS(findFloor("~(())"), "invalid instruction: '~'", std::runtime_error);
-	CHECK_THROWS_WITH_AS(findFloor("((+))"), "invalid instruction: '+'", std::runtime_error);
-	CHECK_THROWS_WITH_AS(findFloor(")())())x"), "invalid instruction: 'x'", std::runtime_error);
+	CHECK_THROWS_WITH_AS(findFloor("!(())"), "invalid instruction: '!'", runtime_error);
+	CHECK_THROWS_WITH_AS(findFloor("((@))"), "invalid instruction: '@'", runtime_error);
+	CHECK_THROWS_WITH_AS(findFloor(")())())#"), "invalid instruction: '#'", runtime_error);
 }
 
 TEST_CASE("findEnterTheBasementInstructionPosition")
 {
 	CHECK(findEnterTheBasementInstructionPosition(")") == 1);
 	CHECK(findEnterTheBasementInstructionPosition("()())") == 5);
-	CHECK_THROWS_WITH_AS(findEnterTheBasementInstructionPosition("_()())"), "invalid instruction: '_'", std::runtime_error);
-	CHECK_THROWS_WITH_AS(findEnterTheBasementInstructionPosition("() ())"), "invalid instruction: ' '", std::runtime_error);
-	CHECK_THROWS_WITH_AS(findEnterTheBasementInstructionPosition("((($"), "invalid instruction: '$'", std::runtime_error);
-	CHECK_THROWS_WITH_AS(findEnterTheBasementInstructionPosition(""), "no 'enter the basement' instruction found", std::runtime_error);
-	CHECK_THROWS_WITH_AS(findEnterTheBasementInstructionPosition("("), "no 'enter the basement' instruction found", std::runtime_error);
-	CHECK_THROWS_WITH_AS(findEnterTheBasementInstructionPosition("(((())))"), "no 'enter the basement' instruction found", std::runtime_error);
+	CHECK_THROWS_WITH_AS(findEnterTheBasementInstructionPosition("_()())"), "invalid instruction: '_'", runtime_error);
+	CHECK_THROWS_WITH_AS(findEnterTheBasementInstructionPosition("() ())"), "invalid instruction: ' '", runtime_error);
+	CHECK_THROWS_WITH_AS(findEnterTheBasementInstructionPosition("((($"), "invalid instruction: '$'", runtime_error);
+	CHECK_THROWS_WITH_AS(findEnterTheBasementInstructionPosition(""), "no 'enter the basement' instruction found", runtime_error);
+	CHECK_THROWS_WITH_AS(findEnterTheBasementInstructionPosition("("), "no 'enter the basement' instruction found", runtime_error);
+	CHECK_THROWS_WITH_AS(findEnterTheBasementInstructionPosition("(((())))"), "no 'enter the basement' instruction found", runtime_error);
 }
 
 #else
@@ -107,14 +108,14 @@ private:
 
 int NotQuiteLisp::findAnswer1()
 {
-	AOC_ASSERT(input().size() == 1, "invalid size of the input: only one line expected");
+	AOC_ASSERT_MSG(input().size() == 1, "invalid size of the input: only one line expected");
 
 	return findFloor(input()[0]);
 }
 
 int NotQuiteLisp::findAnswer2()
 {
-	AOC_ASSERT(input().size() == 1, "invalid size of the input: only one line expected");
+	AOC_ASSERT_MSG(input().size() == 1, "invalid size of the input: only one line expected");
 
 	return findEnterTheBasementInstructionPosition(input()[0]);
 }
