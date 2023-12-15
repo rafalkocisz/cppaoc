@@ -32,6 +32,9 @@
 		} \
 	} while(0)
 
+#define AOC_NUM_ELEMENTS(array) \
+	(sizeof(array) / sizeof(*(array)))
+
 namespace aoc
 {
 	std::vector<std::string> loadPuzzleInput(const std::string& puzzleInputFilePath);
