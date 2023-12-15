@@ -53,8 +53,8 @@ namespace aoc
 
 	private:
 		virtual void processInput(const std::string& puzzleInputFilePath);
-		virtual int findAnswer1() = 0;
-		virtual int findAnswer2() = 0;
+		virtual int answer1() = 0;
+		virtual int answer2() = 0;
 
 	private:
 		std::vector<std::string> input_;

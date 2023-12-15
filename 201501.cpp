@@ -102,18 +102,18 @@ TEST_CASE("findEnterTheBasementInstructionPosition")
 class NotQuiteLisp : public PuzzleSolution
 {
 private:
-	int findAnswer1() override;
-	int findAnswer2() override;
+	int answer1() override;
+	int answer2() override;
 };
 
-int NotQuiteLisp::findAnswer1()
+int NotQuiteLisp::answer1()
 {
 	AOC_ASSERT_MSG(input().size() == 1, "invalid size of the input: only one line expected");
 
 	return findFloor(input()[0]);
 }
 
-int NotQuiteLisp::findAnswer2()
+int NotQuiteLisp::answer2()
 {
 	AOC_ASSERT_MSG(input().size() == 1, "invalid size of the input: only one line expected");
 

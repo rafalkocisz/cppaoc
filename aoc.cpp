@@ -51,8 +51,8 @@ namespace aoc
 	{
 		processInput(puzzleInputFilePath);
 
-		println("{}", findAnswer1());
-		println("{}", findAnswer2());
+		println("{}", answer1());
+		println("{}", answer2());
 
 		return EXIT_SUCCESS;
 	}
