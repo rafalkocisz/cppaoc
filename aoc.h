@@ -37,6 +37,14 @@
 
 namespace aoc
 {
+	template<class T>
+	bool isInRange(const T& value,
+	               const T& rangeStart,
+	               const T& rangeEnd)
+	{
+		return (value >= rangeStart) && (value <= rangeEnd);
+	}
+
 	std::vector<std::string> loadPuzzleInput(const std::string& puzzleInputFilePath);
 
 	[[noreturn]]
@@ -54,8 +62,10 @@ namespace aoc
 	protected:
 		const std::vector<std::string>& input() const { return input_; }
 
-	private:
+	protected:
 		virtual void processInput(const std::string& puzzleInputFilePath);
+
+	private:
 		virtual int answer1() = 0;
 		virtual int answer2() = 0;
 

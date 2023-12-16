@@ -1,6 +1,6 @@
 #include "aoc.h"
 
-#ifdef AOC_TEST
+#ifdef AOC_TEST_SOLUTION
 #define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
 #include "doctest/doctest.h"
 #endif
@@ -187,7 +187,7 @@ int extractCalibrationValue2(const string& line)
 	return digitsToInt(findFirstDigit(line), findLastDigit(line));
 }
 
-#ifdef AOC_TEST
+#ifdef AOC_TEST_SOLUTION
 
 TEST_CASE("findFirstDigitByChar")
 {

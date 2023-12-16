@@ -1,5 +1,10 @@
 #include "aoc.h"
 
+#if defined(AOC_TEST)
+#define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
+#include "doctest/doctest.h"
+#endif
+
 #define FMT_HEADER_ONLY
 #include "fmt/format.h"
 
@@ -30,7 +35,9 @@ namespace aoc
 	[[noreturn]] void panic(const string& message,
 	                        source_location sourceLocation)
 	{
-#ifndef AOC_TEST
+#if defined(AOC_TEST) || defined(AOC_TEST_SOLUTION)
+		throw runtime_error(message);
+#else
 		constexpr fmt::string_view panicMessageFormat = "`{}` panicked at {}({}:{}) with message: `{}`.";
 
 		println(stderr,
@@ -42,8 +49,6 @@ namespace aoc
 		        message);
 
 		exit(EXIT_FAILURE);
-#else
-		throw runtime_error(message);
 #endif
 	}
 
@@ -62,3 +67,22 @@ namespace aoc
 		input_ = loadPuzzleInput(puzzleInputFilePath);
 	}
 }
+
+#if defined(AOC_TEST)
+
+namespace aoc
+{
+	TEST_CASE("isInRange")
+	{
+		CHECK(isInRange(1, 1, 10) == true);
+		CHECK(isInRange(5, 1, 10) == true);
+		CHECK(isInRange(10, 1, 10) == true);
+		CHECK(isInRange(0, 1, 10) == false);
+		CHECK(isInRange(11, 1, 10) == false);
+		CHECK(isInRange(-10, 1, 10) == false);
+		CHECK(isInRange(20, 1, 10) == false);
+		CHECK(isInRange(3, -1, 3) == true);
+	}
+}
+
+#endif

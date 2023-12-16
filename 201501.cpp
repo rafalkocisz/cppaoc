@@ -1,6 +1,6 @@
 #include "aoc.h"
 
-#ifdef AOC_TEST
+#ifdef AOC_TEST_SOLUTION
 #define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
 #include "doctest/doctest.h"
 #endif
@@ -56,7 +56,7 @@ int findEnterTheBasementInstructionPosition(const string& instructions)
 	return -1;
 }
 
-#ifdef AOC_TEST
+#ifdef AOC_TEST_SOLUTION
 
 TEST_CASE("floorOffset")
 {
