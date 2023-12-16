@@ -483,12 +483,10 @@ TEST_CASE("parseEngineSchematic")
 
 	CHECK(parseEngineSchematic(lines1).toString() == string(engineSchematicStr1));
 
-
 	const vector<string> lines2 = { "617*......" };
 	const char* engineSchematicStr2 = "617*......";
 
 	CHECK(parseEngineSchematic(lines2).toString() == string(engineSchematicStr2));
-
 
 	const vector<string> lines3 =
 	{
@@ -501,7 +499,6 @@ TEST_CASE("parseEngineSchematic")
 		".....+.58.";
 
 	CHECK(parseEngineSchematic(lines3).toString() == string(engineSchematicStr3));
-
 
 	const vector<string> lines4 =
 	{
@@ -585,7 +582,6 @@ TEST_CASE("EngineSchematic")
 		CHECK(engineSchematic.isPartNumber(5, 0) == false);
 	}
 
-
 	SUBCASE("isGear")
 	{
 		int gearRatio = 0;
@@ -635,7 +631,6 @@ void GearRatios::processInput(const string& puzzleInputFilePath)
 
 	engineSchematic_ = parseEngineSchematic(input());
 }
-
 
 int GearRatios::answer1()
 {
